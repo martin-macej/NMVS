@@ -1,0 +1,22 @@
+<div class="test3">
+    <div class="title">
+        <h1>Výroky na zaradenie</h1>
+        V tomto teste budete mať za úlohu vybrať politika, ktorý povedal uvedený výrok. Na výber máte vždy z 3 rôznych možností. 
+    </div>
+    <div style="text-align: center;" *ngFor="let question of questions; let i = index">
+        <div class="question-text mb-4">{{question.question}}</div>
+        <div style="text-align: center;">
+            <mat-button-toggle-group [(value)]="selectedValues[i]" style="width: 60%;">
+                <mat-button-toggle [disabled]="submitted" style="width: 33%;" *ngFor="let answer of question.answers" [value]="answer"
+                    [ngClass]="{'wrong': submitted && !answer.right && selectedValues[i].display === answer.display, 'right': submitted && answer.right}">
+                    <div>{{answer.display}}</div>
+                    <img mat-card-image [src]="getImage(answer.display)" style="width: auto; max-height: 180px;">
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+        </div>
+        <hr>
+    </div>
+    <div class="submit-button">
+        <button mat-raised-button *ngIf="!isBtnDisabled()" color="primary" (click)="submit()">{{btnText}}</button>
+    </div>
+</div>

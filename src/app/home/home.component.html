@@ -1,0 +1,25 @@
+<div class="home-page-top">
+    <h1>Vitajte na stránke pre testovanie falošných správ</h1>
+  </div>
+  <div class="content">
+    <h3>Otestovať sa je jednoduché, stačí si zvoliť typ testu, počet otázok a spustiť test. Po jeho dokončeni sa Vám zobrazí vaša úspešnosť, počet správnych a nesprávnych odpovedí a odôvodnenia tvrdení, ktoré ste zadali nesprávne.</h3>
+    <div class="test-form">
+      <h3>Otestujte sa</h3>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Typ testu</mat-label>
+        <mat-select [(value)]="type">
+          <mat-option *ngFor="let type of types" [value]="type">{{type.display}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Počet otázok</mat-label>
+        <mat-select [(value)]="count">
+          <mat-option *ngFor="let count of questionCount" [value]="count">{{count.display}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" (click)="startTest()">Spustiť test</button>
+    </div>
+  </div>

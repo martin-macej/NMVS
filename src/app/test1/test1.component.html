@@ -1,0 +1,35 @@
+<div class="test1">
+    <div class="title">
+      <h1>Výroky na zaradenie</h1>
+      V tomto teste budete mať za úlohu vybrať, ktorý výrok je pravdivý a ktorý je nepravdivý vybraním možnosti pravda/nepravda ku každému výroku.
+    </div>
+    <div *ngFor="let question of questions; let i = index" [attr.data-index]="i" class="question">
+        <mat-card class="question-text">
+            <mat-card-header>
+              <mat-card-title>{{question.person}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image [src]="getImage(question.person)" [alt]="question.person">
+            <mat-card-content>
+              <p>{{ question.question }}</p>
+            </mat-card-content>
+          </mat-card>
+        <mat-form-field appearance="" class="question-answer">
+            <mat-select [(value)]="userAnswers[i]" [disabled]="submitted">
+              <mat-option *ngFor="let answer of answers[i]" [value]="answer">{{ answer.display }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <div class="result" *ngIf="submitted"
+        [ngClass]="{'wrong': !userAnswers[i].right && submitted, 
+        'right': userAnswers[i].right && submitted}">Tvoja odpoveď bola {{userAnswers[i].right ? '' : 'ne'}}správna</div>
+        <div *ngIf="submitted" class="reason">
+            <p style="font-weight: bold;">Odôvodnenie</p>
+            <p>{{question.reason}}</p>
+        </div>
+        <div *ngIf="!submitted">
+            <p>Po odovzdaní testu sa zobrazia výsledky</p>
+        </div>
+    </div>
+    <div class="submit-button">
+        <button mat-raised-button *ngIf="!isBtnDisabled()" color="primary" (click)="submit()">{{btnText}}</button>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="test2">
+    <div class="title">
+        <h1>Výroky na zaradenie</h1>
+        V tomto teste budete mať za úlohu zaradenie výrokov medzi správne a nesprávne jednoduchým chytením a ich potiahnutím do príslušného stĺpca  
+    </div>
+    <div class="test-container">
+        <h2>Výroky na zaradenie</h2>
+        <div
+            cdkDropList
+            #allList="cdkDropList"
+            [cdkDropListData]="all"
+            [cdkDropListConnectedTo]="[rightList, wrongList]"
+            class="test-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="test-box" *ngFor="let item of all" cdkDrag [cdkDragDisabled]="submitted" [ngClass]="{'wrong': submitted}" [matTooltip]="!submitted ? '' : item.reason">{{item.person}}: {{item.question}}</div>
+        </div>
+    </div>
+    
+    <div class="test-container">
+        <h2>Pravdivé výroky</h2>
+        <div
+            cdkDropList
+            #rightList="cdkDropList"
+            [cdkDropListData]="right"
+            [cdkDropListConnectedTo]="[allList, wrongList]"
+            class="test-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="test-box" *ngFor="let item of right" cdkDrag [cdkDragDisabled]="submitted"
+                [ngClass]="{'wrong': submitted && !item.right, 'right': submitted && item.right}" [matTooltip]="!submitted ? '' : item.reason">{{item.person}}: {{item.question}}</div>
+        </div>
+    </div>
+      
+    <div class="test-container">
+        <h2>Nepravdivé výroky</h2>
+        <div
+            cdkDropList
+            #wrongList="cdkDropList"
+            [cdkDropListData]="wrong"
+            [cdkDropListConnectedTo]="[allList, rightList]"
+            class="test-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="test-box" *ngFor="let item of wrong" cdkDrag [cdkDragDisabled]="submitted"
+                [ngClass]="{'wrong': submitted && item.right, 'right': submitted && !item.right}" 
+                [matTooltip]="!submitted ? '' : item.reason">{{item.person}}: {{item.question}}</div>
+        </div>
+    </div>
+</div>
+
+<div class="submit-button">
+    <button mat-raised-button *ngIf="!isBtnDisabled()" color="primary" (click)="submit()">{{btnText}}</button>
+</div>

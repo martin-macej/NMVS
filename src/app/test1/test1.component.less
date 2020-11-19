@@ -1,0 +1,52 @@
+.test1 {
+    .right {
+        background-color: #9dd44a !important;
+        border-radius: 20px;
+    }
+    .wrong {
+        background-color: #e85353 !important;
+        border-radius: 20px;
+    }
+    .question {
+        display: flex;
+        // width: 500px;
+        margin: 15px;
+        border-bottom: 1px solid #000;
+        & > * {
+            padding: 15px;
+            margin: auto 20px;
+        }
+        .question-text {
+            width: 20%;
+            text-align: center;
+            .mat-card-header {
+                justify-content: center;
+            }
+            img {
+                width: 50%;
+            }
+        }
+        .question-answer {
+            width: 15%;
+        }
+        .result {
+            width: 15%;
+        }
+        .reason {
+            width: 50%;
+        }
+    }
+    // .results {
+    //     margin: 15px;
+    //     div {
+    //         font-weight: 500;
+    //     }
+    // }
+    .submit-button {
+        text-align: center;
+        button {
+            margin: 15px;
+            width: 180px;
+        }
+    }
+}
